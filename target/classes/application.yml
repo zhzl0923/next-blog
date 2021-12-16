@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql:://127.0.0.1:3306/next-blog
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 1000
+      idle-timeout: 60000
+      max-lifetime: 10
+
+
