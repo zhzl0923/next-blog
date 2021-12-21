@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/layout::layout(~{::main})}" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<body itemscope itemtype="http://schema.org/WebPage">
+<main class="content-wrap">
+    <div class="content tag">
+        <div class="post-block">
+            <div class="posts-collapse">
+                <div class="collection-title">
+                    <h2 class="collection-header">hello
+                        <small>标签</small>
+                    </h2>
+                </div>
+                <div class="collection-year">
+                    <span class="collection-header">2021</span>
+                </div>
+                <article itemscope itemtype="http://schema.org/Article">
+                    <header class="post-header">
+                        <div class="post-meta">
+                            <time itemprop="dateCreated"
+                                  datetime="2021-12-20T15:29:38+08:00"
+                                  content="2021-12-20">
+                                12-20
+                            </time>
+                        </div>
+                        <div class="post-title">
+                            <a class="post-title-link" href="/article/detail/1" itemprop="url">
+                                <span itemprop="name">Hello World</span>
+                            </a>
+                        </div>
+                    </header>
+                </article>
+                <article itemscope itemtype="http://schema.org/Article">
+                    <header class="post-header">
+                        <div class="post-meta">
+                            <time itemprop="dateCreated"
+                                  datetime="2021-12-20T15:29:33+08:00"
+                                  content="2021-12-20">
+                                12-20
+                            </time>
+                        </div>
+                        <div class="post-title">
+                            <a class="post-title-link" href="/article/detail/2" itemprop="url">
+                                <span itemprop="name">Hello World</span>
+                            </a>
+                        </div>
+                    </header>
+                </article>
+                <article itemscope itemtype="http://schema.org/Article">
+                    <header class="post-header">
+                        <div class="post-meta">
+                            <time itemprop="dateCreated"
+                                  datetime="2021-12-20T14:46:44+08:00"
+                                  content="2021-12-20">
+                                12-20
+                            </time>
+                        </div>
+                        <div class="post-title">
+                            <a class="post-title-link" href="/article/detail/3" itemprop="url">
+                                <span itemprop="name">Hello World</span>
+                            </a>
+                        </div>
+                    </header>
+                </article>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
