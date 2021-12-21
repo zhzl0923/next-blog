@@ -15,3 +15,10 @@ spring:
   web:
     resources:
       static-locations: classpath:/static
+  thymeleaf:
+    #设置thymeleaf页面缓存失效
+    cache: false
+    #thymeleaf模版前缀，默认值,可选项
+    prefix: classpath:/templates/
+    #thymeleaf模版后缀，默认值,可选项
+    suffix: .html
