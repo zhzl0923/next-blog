@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html th:fragment="layout (main)" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/common::head"></head>
+<head th:replace="index/layout/common::head"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
 <div class="container use-motion">
     <div class="headband"></div>
-    <header th:replace="layout/navbar"></header>
+    <header th:replace="index/layout/navbar"></header>
     <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
         <span>0%</span>
@@ -23,12 +23,12 @@
     <main class="main">
         <div class="main-inner">
             <div th:replace="${main}"></div>
-            <div th:replace="layout/aside"></div>
+            <div th:replace="index/layout/aside"></div>
         </div>
     </main>
-    <footer th:replace="layout/footer" class="footer">
+    <footer th:replace="index/layout/footer" class="footer">
     </footer>
 </div>
-<div th:replace="layout/common::script"></div>
+<div th:replace="index/layout/common::script"></div>
 </body>
 </html>

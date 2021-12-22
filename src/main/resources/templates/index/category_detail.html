@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html th:replace="~{layout/layout::layout(~{::main})}" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{index/layout/layout::layout(~{::main})}" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <body itemscope itemtype="http://schema.org/WebPage">
 <main class="content-wrap">
-    <div class="content tag">
+    <div class="content category">
         <div class="post-block">
             <div class="posts-collapse">
                 <div class="collection-title">
                     <h2 class="collection-header">hello
-                        <small>标签</small>
+                        <small>分类</small>
                     </h2>
                 </div>
                 <div class="collection-year">
@@ -45,6 +45,7 @@
                         </div>
                     </header>
                 </article>
+
                 <article itemscope itemtype="http://schema.org/Article">
                     <header class="post-header">
                         <div class="post-meta">

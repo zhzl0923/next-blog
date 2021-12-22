@@ -39,7 +39,7 @@ NexT.motion.middleWares = {
     brand && sequence.push({
       e: brand,
       p: {opacity: 1},
-      o: {duration: 200}
+      o: {duration: 150}
     });
 
     function getMistLineSettings(element, translateX) {
@@ -57,7 +57,7 @@ NexT.motion.middleWares = {
       sequence.push({
         e: image,
         p: {opacity: 1, top: 0},
-        o: {duration: 200}
+        o: {duration: 150}
       });
     }
 
@@ -72,13 +72,13 @@ NexT.motion.middleWares = {
     title && sequence.push({
       e: title,
       p: {opacity: 1, top: 0},
-      o: {duration: 200}
+      o: {duration: 150}
     });
 
     subtitle && sequence.push({
       e: subtitle,
       p: {opacity: 1, top: 0},
-      o: {duration: 200}
+      o: {duration: 150}
     });
 
     (CONFIG.scheme === 'Pisces' || CONFIG.scheme === 'Gemini') && image && pushImageToSequence();
@@ -100,7 +100,7 @@ NexT.motion.middleWares = {
   menu: function(integrator) {
     Velocity(document.querySelectorAll('.menu-item'), 'transition.slideDownIn', {
       display : null,
-      duration: 200,
+      duration: 150,
       complete: function() {
         integrator.next();
       }
@@ -165,7 +165,7 @@ NexT.motion.middleWares = {
     if (sidebarAffixTransition && (CONFIG.scheme === 'Pisces' || CONFIG.scheme === 'Gemini')) {
       Velocity(sidebarAffix, 'transition.' + sidebarAffixTransition, {
         display : null,
-        duration: 200,
+        duration: 150,
         complete: function() {
           // After motion complete need to remove transform from sidebar to let affix work on Pisces | Gemini.
           sidebarAffix.style.transform = 'initial';

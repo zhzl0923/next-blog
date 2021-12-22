@@ -1,4 +1,4 @@
-package com.example.nextblog.controller;
+package com.example.nextblog.index.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,11 +10,11 @@ public class TagController {
 
     @GetMapping("/tags")
     public ModelAndView list() {
-        return new ModelAndView("tags");
+        return new ModelAndView("index/tags");
     }
 
     @GetMapping("/tags/{tagName}")
     public ModelAndView detail(@PathVariable String tagName) {
-        return new ModelAndView("tag_detail");
+        return new ModelAndView("index/tag_detail");
     }
 }

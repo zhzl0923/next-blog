@@ -1,4 +1,4 @@
-package com.example.nextblog.controller;
+package com.example.nextblog.index.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,11 +10,11 @@ public class CategoryController {
 
     @GetMapping("/categories")
     public ModelAndView list() {
-        return new ModelAndView("categories");
+        return new ModelAndView("index/categories");
     }
 
     @GetMapping("/categories/{categoryName}")
     public ModelAndView detail(@PathVariable String categoryName) {
-        return new ModelAndView("category_detail");
+        return new ModelAndView("index/category_detail");
     }
 }

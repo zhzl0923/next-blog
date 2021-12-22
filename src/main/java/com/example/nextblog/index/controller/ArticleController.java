@@ -1,4 +1,4 @@
-package com.example.nextblog.controller;
+package com.example.nextblog.index.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class ArticleController {
     @GetMapping("/article/detail/{id}")
     public ModelAndView detail(@PathVariable long id) {
-        return new ModelAndView("detail");
+        return new ModelAndView("index/detail");
     }
 }
