@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html th:fragment="layout(main)" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/layout/common::head">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+        <img class="animation__shake" src="/static/admin/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+             width="60">
+    </div>
+    <!-- Navbar -->
+    <nav th:replace="admin/layout/navbar"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    <aside th:replace="admin/layout/aside"></aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <main th:replace="${main}"></main>
+    <!-- /.content-wrapper -->
+    <footer th:replace="admin/layout/footer"></footer>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<div th:replace="admin/layout/common::script"></div>
+</body>
+</html>

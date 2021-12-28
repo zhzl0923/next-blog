@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html th:replace="~{blog/layout/layout::layout(~{::main})}" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<body itemscope itemtype="http://schema.org/WebPage">
+<main class="content-wrap">
+    <div class="content page posts-expand">
+        <div class="post-block" lang="zh-CN">
+            <header class="post-header">
+                <h1 class="post-title" itemprop="name headline">tags
+                </h1>
+                <div class="post-meta">
+                </div>
+            </header>
+            <div class="post-body">
+                <div class="tag-cloud">
+                    <div class="tag-cloud-title">
+                        目前共计 1 个标签
+                    </div>
+                    <div class="tag-cloud-tags">
+                        <a href="/tags/hello" style="font-size: 1px; color: #ccc">hello</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
