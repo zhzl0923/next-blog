@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html th:replace="~{admin/layout/layout::layout(~{::main})}" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<main class="content-wrapper">
+    <style>
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #007bff;
+            border-color: #006fe6;
+        }
+    </style>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">文章编辑</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">文章管理</a></li>
+                        <li class="breadcrumb-item active">文章编辑</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="title">文章标题</label>
+                                    <input type="text" name="title" class="form-control" id="title"
+                                           placeholder="请输入文章标题...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="intro">文章简介</label>
+                                    <input type="text" name="intro" class="form-control" id="intro"
+                                           placeholder="请输入文章简介...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">文章分类</label>
+                                    <select class="form-control" id="category"
+                                            data-placeholder="请选择文章分类" style="width: 100%;">
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intro">文章标签</label>
+                                    <select name="tag_id" class="select2" multiple="multiple"
+                                            data-placeholder="请选择文章标签" data-dropdown-css-class="select2-primary"
+                                            style="width: 100%;">
+                                        <option>Alabama</option>
+                                        <option>Alaska</option>
+                                        <option>California</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                        <option>Washington</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="views">浏览量</label>
+                                    <input type="number" min="0" name="views" class="form-control" id="views"
+                                           placeholder="请输入浏览量...">
+                                </div>
+                                <div id="editor">
+                                    <textarea style="display:none;"></textarea>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+    <script src="/static/admin/editormd/editormd.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var testEditor = editormd("editor", {
+                width: "100%",
+                height: 640,
+                markdown: "",
+                path: '/static/admin/editormd/lib/',
+                //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为 true
+                //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为 true
+                //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为 true
+                //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为 0.1
+                //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为 #fff
+                imageUpload: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL: "./php/upload.php?test=dfdf",
+
+                /*
+                 上传的后台只需要返回一个 JSON 数据，结构如下：
+                 {
+                    success : 0 | 1,           // 0 表示上传失败，1 表示上传成功
+                    message : "提示的信息，上传成功或上传失败及错误信息等。",
+                    url     : "图片地址"        // 上传成功时才返回
+                 }
+                 */
+            });
+        });
+    </script>
+</main>
+</html>
