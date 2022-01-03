@@ -6,6 +6,10 @@
             background-color: #007bff;
             border-color: #006fe6;
         }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            color: rgba(255,255,255,.7);
+            margin-right: -2px;
+        }
     </style>
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -73,13 +77,13 @@
                                         <option>Washington</option>
                                     </select>
                                 </div>
+                                <div id="editor">
+                                    <textarea style="display:none;"></textarea>
+                                </div>
                                 <div class="form-group">
                                     <label for="views">浏览量</label>
                                     <input type="number" min="0" name="views" class="form-control" id="views"
                                            placeholder="请输入浏览量...">
-                                </div>
-                                <div id="editor">
-                                    <textarea style="display:none;"></textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
