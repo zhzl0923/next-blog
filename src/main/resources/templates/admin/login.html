@@ -37,10 +37,11 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" name="code" class="form-control" placeholder="验证码">
+                    <input type="text" name="captcha_code" class="form-control" placeholder="验证码">
+                    <input type="hidden" name="captcha_key" id="captcha_key" value="">
                     <div class="input-group-append ml-5">
-                        <img style="height: calc(2.25rem + 2px);width: 100px"
-                             src="/static/admin/img/default-150x150.png">
+                        <img style="height: calc(2.25rem + 2px);width: 100px" id="captcha"
+                             src="">
                     </div>
                 </div>
                 <div class="row">
@@ -63,5 +64,26 @@
 <script src="/static/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/static/admin/js/adminlte.min.js"></script>
+<script type="text/javascript">
+    function getCaptcha() {
+        $.ajax({
+            url: "/admin/captcha",
+            method: "GET",
+            success: function (res) {
+                if (res.code == 200) {
+                    $("#captcha").attr("src", res.data.image)
+                    $("#captcha_key").val(res.data.key)
+                }
+            }
+        })
+    }
+
+    $(function () {
+        getCaptcha()
+        $("#captcha").click(function () {
+            getCaptcha()
+        })
+    })
+</script>
 </body>
 </html>

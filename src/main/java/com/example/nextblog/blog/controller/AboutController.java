@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class Home {
+public class AboutController {
 
-    @GetMapping("/")
+    @GetMapping("/about")
     public String index() {
-        return "blog/home";
+        return "blog/about";
     }
 }

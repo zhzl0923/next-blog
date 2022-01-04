@@ -5,15 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class Category {
+public class TagController {
 
-    @GetMapping("/categories")
+    @GetMapping("/tags")
     public String list() {
-        return "blog/categories";
+        return "blog/tags";
     }
 
-    @GetMapping("/categories/{categoryName}")
-    public String detail(@PathVariable String categoryName) {
-        return "blog/category_detail";
+    @GetMapping("/tags/{tagName}")
+    public String detail(@PathVariable String tagName) {
+        return "blog/tag_detail";
     }
 }
