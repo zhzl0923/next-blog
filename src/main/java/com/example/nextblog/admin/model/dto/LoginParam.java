@@ -1,9 +1,14 @@
 package com.example.nextblog.admin.model.dto;
 
 
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
-public class LoginParam {
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
+@Data
+public class LoginParam implements Serializable {
 
     @NotNull
     private String username;
@@ -11,5 +16,8 @@ public class LoginParam {
     @NotNull
     private String password;
 
+    @NotNull
+    @JsonProperty(value = "captcha_code")
+    private String captchaCode;
 
 }

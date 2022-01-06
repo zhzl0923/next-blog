@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Next Blog Admin | Log in</title>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/static/admin/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/static/admin/plugins/fontawesome-free/css/all.min.css}">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="/static/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/static/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/static/admin/css/adminlte.min.css">
+    <link rel="stylesheet" th:href="@{/static/admin/css/adminlte.min.css}">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -19,7 +19,7 @@
             <a href="/admin" class="h3">Next Blog Admin</a>
         </div>
         <div class="card-body">
-            <form action="" method="post">
+            <form>
                 <div class="input-group mb-3">
                     <input type="text" name="username" class="form-control" placeholder="用户名">
                     <div class="input-group-append">
@@ -38,7 +38,6 @@
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" name="captcha_code" class="form-control" placeholder="验证码">
-                    <input type="hidden" name="captcha_key" id="captcha_key" value="">
                     <div class="input-group-append ml-5">
                         <img style="height: calc(2.25rem + 2px);width: 100px" id="captcha"
                              src="">
@@ -46,7 +45,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary btn-block">登录</button>
+                        <button id="submit" type="button" class="btn btn-primary btn-block">登录</button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -59,29 +58,47 @@
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="/static/admin/plugins/jquery/jquery.min.js"></script>
+<script th:src="@{/static/admin/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap 4 -->
-<script src="/static/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/static/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script src="/static/admin/js/adminlte.min.js"></script>
+<script th:src="@{/static/admin/js/adminlte.min.js}"></script>
 <script type="text/javascript">
-    function getCaptcha() {
-        $.ajax({
-            url: "/admin/captcha",
-            method: "GET",
-            success: function (res) {
-                if (res.code == 200) {
-                    $("#captcha").attr("src", res.data.image)
-                    $("#captcha_key").val(res.data.key)
-                }
-            }
-        })
-    }
-
     $(function () {
+        function getCaptcha() {
+            $.ajax({
+                url: "/admin/captcha",
+                method: "GET",
+                success: function (res) {
+                    if (res.code == 200) {
+                        $("#captcha").attr("src", res.data.image)
+                        $("#captcha_key").val(res.data.key)
+                    }
+                }
+            })
+        }
+
         getCaptcha()
         $("#captcha").click(function () {
             getCaptcha()
+        })
+        $("#submit").click(function () {
+            let username = $("input[name='username']").val()
+            let password = $("input[name='password']").val()
+            let captcha_code = $("input[name='captcha_code']").val()
+            let _csrf = $("input[name='_csrf']").val()
+            $.ajax({
+                url: "/admin/login",
+                method: "POST",
+                headers: {"content-type": "application/x-www-form-urlencoded"},
+                data: {username: username, password: password, captcha_code: captcha_code, _csrf: _csrf},
+                success: function (res) {
+                    console.log(res)
+                },
+                error: function (res) {
+                    console.log(res)
+                }
+            })
         })
     })
 </script>

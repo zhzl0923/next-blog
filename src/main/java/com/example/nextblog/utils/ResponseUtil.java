@@ -11,4 +11,20 @@ public class ResponseUtil {
         result.setData(data);
         return result;
     }
+
+    public static <T> Result<T> fail(T data, String message) {
+        Result<T> result = new Result<>();
+        result.setCode(400);
+        result.setMessage(message);
+        result.setData(data);
+        return result;
+    }
+
+    public static <T> Result<T> error(T data, String message) {
+        Result<T> result = new Result<>();
+        result.setCode(500);
+        result.setMessage(message);
+        result.setData(data);
+        return result;
+    }
 }
