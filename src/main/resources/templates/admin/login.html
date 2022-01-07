@@ -16,7 +16,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="/admin" class="h3">Next Blog Admin</a>
+            <a th:href="@{/admin}" class="h3">Next Blog Admin</a>
         </div>
         <div class="card-body">
             <form>
@@ -43,6 +43,7 @@
                              src="">
                     </div>
                 </div>
+                <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
                 <div class="row">
                     <div class="col">
                         <button id="submit" type="button" class="btn btn-primary btn-block">登录</button>

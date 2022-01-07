@@ -1,4 +1,4 @@
-package com.example.nextblog.admin.controller;
+package com.example.nextblog.controller.admin;
 
 import org.springframework.web.bind.annotation.RestController;
 

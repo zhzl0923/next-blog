@@ -1,7 +1,6 @@
 package com.example.nextblog.interceptor;
 
 import com.example.nextblog.constant.consist.SessionConstants;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 

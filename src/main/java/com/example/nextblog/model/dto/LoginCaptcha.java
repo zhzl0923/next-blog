@@ -1,4 +1,4 @@
-package com.example.nextblog.admin.model.dto;
+package com.example.nextblog.model.dto;
 
 import lombok.Data;
 

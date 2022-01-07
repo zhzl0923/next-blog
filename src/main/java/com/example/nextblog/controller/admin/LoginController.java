@@ -1,13 +1,12 @@
-package com.example.nextblog.admin.controller;
+package com.example.nextblog.controller.admin;
 
-import com.example.nextblog.admin.model.dto.LoginCaptcha;
-import com.example.nextblog.admin.model.dto.LoginParam;
-import com.example.nextblog.admin.model.dto.Result;
+import com.example.nextblog.model.dto.LoginCaptcha;
+import com.example.nextblog.model.dto.LoginParam;
+import com.example.nextblog.model.vo.Result;
 import com.example.nextblog.annotation.ParameterConvert;
 import com.example.nextblog.constant.consist.SessionConstants;
 import com.example.nextblog.utils.ImageCaptchaUtil;
 import com.example.nextblog.utils.ResponseUtil;
-import com.fasterxml.jackson.databind.ser.std.NullSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,10 +37,8 @@ public class LoginController {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         captchaUtils.output(image, stream);
         String imageData = Base64.getEncoder().encodeToString(stream.toByteArray());
-
         LoginCaptcha captcha = new LoginCaptcha();
         captcha.setKey(SessionConstants.CaptchaKey);
-
         request.getSession().setAttribute(captcha.getKey(), captchaUtils.getText()); //将验证码的文本存在session中
         captcha.setImage("data:image/jpg;base64," + imageData);
         return ResponseUtil.success(captcha, "获取成功");

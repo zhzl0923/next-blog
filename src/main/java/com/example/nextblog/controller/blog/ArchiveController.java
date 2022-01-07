@@ -1,13 +1,13 @@
-package com.example.nextblog.admin.controller;
+package com.example.nextblog.controller.blog;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class IndexController {
+public class ArchiveController {
 
-    @GetMapping("/admin")
+    @GetMapping("/archives")
     public String index() {
-        return "admin/index";
+        return "blog/archives";
     }
 }

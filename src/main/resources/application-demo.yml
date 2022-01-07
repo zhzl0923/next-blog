@@ -1,15 +1,17 @@
 server:
   port: 8080
 spring:
+  profiles:
+    active: dev
   datasource:
-    url: jdbc:mysql:://127.0.0.1:3306/next-blog
+    url: jdbc:mysql://127.0.0.1:3306/next-blog
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
-      maximum-pool-size: 10
+      connection-timeout: 1000
       idle-timeout: 60000
-      connection-timeout: 3000
+      max-lifetime: 10
   mvc:
     static-path-pattern: /static/**
   web:
@@ -22,3 +24,11 @@ spring:
     prefix: classpath:/templates/
     #thymeleaf模版后缀，默认值,可选项
     suffix: .html
+logging:
+  config: classpath:log4j2.xml
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启SQL语句打印
+upload:
+  uploadAuthorImg: "/upload/author_img/"
+  fileUploadDic: "/upload/article/"

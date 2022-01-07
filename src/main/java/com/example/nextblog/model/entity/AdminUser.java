@@ -1,4 +1,4 @@
-package com.example.nextblog.admin.model.entity;
+package com.example.nextblog.model.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

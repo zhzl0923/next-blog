@@ -1,6 +1,6 @@
 package com.example.nextblog.utils;
 
-import com.example.nextblog.admin.model.dto.Result;
+import com.example.nextblog.model.vo.Result;
 
 public class ResponseUtil {
 
