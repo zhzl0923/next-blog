@@ -1,4 +1,4 @@
-package com.example.nextblog.provider;
+package com.example.nextblog.security;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.nextblog.mapper.AdminUserMapper;

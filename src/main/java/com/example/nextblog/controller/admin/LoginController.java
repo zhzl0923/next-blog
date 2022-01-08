@@ -44,14 +44,14 @@ public class LoginController {
         return ResponseUtil.success(captcha, "获取成功");
     }
 
-    @PostMapping("/admin/login")
-    @ResponseBody
-    public Result<Object> login(@ParameterConvert LoginParam loginRequest, HttpServletRequest request) {
-        if (!loginRequest.getCaptchaCode().equals(request.getSession().getAttribute(SessionConstants.CaptchaKey))) {
-            return ResponseUtil.fail(null, "验证码错误");
-        }
-        request.getSession().removeAttribute(SessionConstants.CaptchaKey);
-        return ResponseUtil.success(null,"登录成功");
-    }
+//    @PostMapping("/admin/login")
+//    @ResponseBody
+//    public Result<Object> login(@ParameterConvert LoginParam loginRequest, HttpServletRequest request) {
+//        if (!loginRequest.getCaptchaCode().equals(request.getSession().getAttribute(SessionConstants.CaptchaKey))) {
+//            return ResponseUtil.fail(null, "验证码错误");
+//        }
+//        request.getSession().removeAttribute(SessionConstants.CaptchaKey);
+//        return ResponseUtil.success(null,"登录成功");
+//    }
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import java.lang.annotation.Annotation;
+import java.util.Objects;
 
 public abstract class AbstractCustomizeResolver implements HandlerMethodArgumentResolver {
     /**
@@ -57,7 +58,7 @@ public abstract class AbstractCustomizeResolver implements HandlerMethodArgument
 
     protected boolean isBindExceptionRequired(WebDataBinder binder, MethodParameter parameter) {
         int i = parameter.getParameterIndex();
-        Class<?>[] paramTypes = parameter.getMethod().getParameterTypes();
+        Class<?>[] paramTypes = Objects.requireNonNull(parameter.getMethod()).getParameterTypes();
         boolean hasBindingResult = (paramTypes.length > (i + 1) && Errors.class.isAssignableFrom(paramTypes[i + 1]));
         return !hasBindingResult;
     }

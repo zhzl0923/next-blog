@@ -59,7 +59,7 @@ public class UnderlineToCamelArgumentResolver extends AbstractCustomizeResolver 
      */
     private String underLineToCamel(String source) {
         Matcher matcher = UNDER_LINE_PATTERN.matcher(source);
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         while (matcher.find()) {
             matcher.appendReplacement(result, matcher.group(1).toUpperCase());
         }
