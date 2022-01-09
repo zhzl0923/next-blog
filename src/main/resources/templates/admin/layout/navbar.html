@@ -41,10 +41,12 @@
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)">
-                <img width="25px" src="/static/admin/img/site-logo.png" alt="User Image">
+                <img width="25px"
+                     th:src="${session.authorImg} != '' ? ${session.authorImg}: '/static/admin/img/site-logo.png'"
+                     alt="User Image">
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">zlxy</span>
+                <span class="dropdown-item dropdown-header" th:text="${session.loginNickName}"></span>
                 <div class="dropdown-divider"></div>
                 <form th:action="@{/admin/logout}" method="post">
                     <button type="submit" class="btn btn-block btn-primary w-75 m-auto">

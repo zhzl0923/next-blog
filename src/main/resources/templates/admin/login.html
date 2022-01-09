@@ -111,27 +111,25 @@
                             }
                         })
                     } else {
-                        toastr.error(res.message, "", {timeOut: 30})
+                        toastr.error(res.message, "", {
+                            timeOut: 30,
+                            onHidden: function () {
+                                window.location.reload()
+                            }
+                        })
                     }
                 },
                 error: function (res) {
-                    toastr.error(res.message, "", {timeOut: 30})
+                    toastr.error(res.message, "", {
+                        timeOut: 30,
+                        onHidden: function () {
+                            window.location.reload()
+                        }
+                    })
                 }
             })
         })
     })
-    // $('.toastrDefaultSuccess').click(function() {
-    //     toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    // });
-    // $('.toastrDefaultInfo').click(function() {
-    //     toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    // });
-    // $('.toastrDefaultError').click(function() {
-    //     toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    // });
-    // $('.toastrDefaultWarning').click(function() {
-    //     toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-    // });
 </script>
 </body>
 </html>
