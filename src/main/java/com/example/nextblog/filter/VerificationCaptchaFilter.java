@@ -35,7 +35,7 @@ public class VerificationCaptchaFilter extends OncePerRequestFilter {
 
     private void verificationCaptcha(HttpServletRequest request) throws VerificationCaptchaException {
         String captchaCode = request.getParameter("captcha_code");
-        if (captchaCode == null || !captchaCode.equals(request.getSession().getAttribute(SessionConstants.CaptchaKey))) {
+        if (captchaCode == null || !captchaCode.equalsIgnoreCase((String) request.getSession().getAttribute(SessionConstants.CaptchaKey))) {
             throw new VerificationCaptchaException();
         }
     }

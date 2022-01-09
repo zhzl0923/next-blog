@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org" style="height: 100vh">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,54 +8,59 @@
     <link rel="stylesheet" th:href="@{/static/admin/plugins/fontawesome-free/css/all.min.css}">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" th:href="@{/static/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+    <!-- Toastr -->
+    <link rel="stylesheet" th:href="@{/static/admin/plugins/toastr/toastr.min.css}">
     <!-- Theme style -->
     <link rel="stylesheet" th:href="@{/static/admin/css/adminlte.min.css}">
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <!-- /.login-logo -->
-    <div class="card card-outline card-primary">
-        <div class="card-header text-center">
-            <a th:href="@{/admin}" class="h3">Next Blog Admin</a>
-        </div>
-        <div class="card-body">
-            <form>
-                <div class="input-group mb-3">
-                    <input type="text" name="username" class="form-control" placeholder="用户名">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+<body class="wrapper">
+<div class="login-page">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a th:href="@{/admin}" class="h3">Next Blog Admin</a>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="text" name="username" class="form-control" placeholder="用户名">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="密码">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="密码">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" name="captcha_code" class="form-control" placeholder="验证码">
-                    <div class="input-group-append ml-5">
-                        <img style="height: calc(2.25rem + 2px);width: 100px" id="captcha"
-                             src="">
+                    <div class="input-group mb-3">
+                        <input type="text" name="captcha_code" class="form-control" placeholder="验证码">
+                        <div class="input-group-append ml-5">
+                            <img style="height: calc(2.25rem + 2px);width: 100px" id="captcha"
+                                 src="">
+                        </div>
                     </div>
-                </div>
-                <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
-                <div class="row">
-                    <div class="col">
-                        <button id="submit" type="button" class="btn btn-primary btn-block">登录</button>
+                    <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
+                    <div class="row">
+                        <div class="col">
+                            <button id="submit" type="button" class="btn btn-primary btn-block">登录</button>
+                        </div>
+                        <!-- /.col -->
                     </div>
-                    <!-- /.col -->
-                </div>
-            </form>
+                </form>
+            </div>
+            <!-- /.card-body -->
         </div>
-        <!-- /.card-body -->
+        <!-- /.card -->
     </div>
-    <!-- /.card -->
 </div>
+
 <!-- /.login-box -->
 
 <!-- jQuery -->
@@ -63,7 +68,11 @@
 <!-- Bootstrap 4 -->
 <script th:src="@{/static/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script th:src="@{/static/admin/js/adminlte.min.js}"></script>
+<script src="/static/admin/js/adminlte.js"></script>
+<!-- SweetAlert2 -->
+<script th:src="@{/static/admin/plugins/sweetalert2/sweetalert2.min.js}"></script>
+<!-- Toastr -->
+<script th:src="@{/static/admin/plugins/toastr/toastr.min.js}"></script>
 <script type="text/javascript">
     $(function () {
         function getCaptcha() {
@@ -94,14 +103,35 @@
                 headers: {"content-type": "application/x-www-form-urlencoded"},
                 data: {username: username, password: password, captcha_code: captcha_code, _csrf: _csrf},
                 success: function (res) {
-                    console.log(res)
+                    if (res.code === 200) {
+                        toastr.success(res.message, "", {
+                            timeOut: 200,
+                            onHidden: function () {
+                                window.location.href = "/admin"
+                            }
+                        })
+                    } else {
+                        toastr.error(res.message, "", {timeOut: 30})
+                    }
                 },
                 error: function (res) {
-                    console.log(res)
+                    toastr.error(res.message, "", {timeOut: 30})
                 }
             })
         })
     })
+    // $('.toastrDefaultSuccess').click(function() {
+    //     toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    // });
+    // $('.toastrDefaultInfo').click(function() {
+    //     toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    // });
+    // $('.toastrDefaultError').click(function() {
+    //     toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    // });
+    // $('.toastrDefaultWarning').click(function() {
+    //     toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+    // });
 </script>
 </body>
 </html>
