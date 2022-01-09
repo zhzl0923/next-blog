@@ -1,16 +1,19 @@
-package com.example.nextblog.service.admin;
+package com.example.nextblog.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.nextblog.mapper.AdminUserMapper;
 import com.example.nextblog.model.entity.AdminUser;
+import com.example.nextblog.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service("AdminUserService")
-public class AdminUserService implements UserDetailsService {
+@Service
+public class AdminUserServiceImpl extends ServiceImpl<AdminUserMapper, AdminUser>
+        implements AdminUserService, UserDetailsService {
 
     @Autowired
     private AdminUserMapper adminUserMapper;
@@ -22,7 +25,9 @@ public class AdminUserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return getAdminUserByUsername(username);
+    public UserDetails loadUserByUsername(String username) {
+        QueryWrapper<AdminUser> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        return getOne(queryWrapper, false);
     }
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html th:replace="~{admin/layout/layout::layout(~{::main})}" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<main class="content-wrapper">
+    <style>
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #007bff;
+            border-color: #006fe6;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+            color: rgba(255, 255, 255, .7);
+            margin-right: -2px;
+        }
+    </style>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">标签管理</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">标签管理</a></li>
+                        <li class="breadcrumb-item active">标签列表</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="table_search" class="form-control float-right"
+                               placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr class="text-center">
+                        <th>ID</th>
+                        <th>标签名称</th>
+                        <th>创建时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tag : ${list}" class="text-center">
+                        <td th:text="${tag.getId()}"></td>
+                        <td th:text="${tag.getTagName()}"></td>
+                        <td th:text="${#dates.format(tag.getCreateTime(), 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                <div id="paginator" class="pagination pagination-sm">
+
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+    <script type="text/javascript">
+        $(function () {
+            var currentPage = "[[${page}]]"
+            var totalPage = "[[${totalPages}]]"
+            $("#paginator").jqPaginator({
+                totalPages: Number(totalPage),
+                visiblePages: 10,
+                currentPage: Number(currentPage),
+                first: '<li class="first page-item"><a class="page-link" href="javascript:void(0);">首页<\/a><\/li>',
+                prev: '<li class="prev page-item"><a class="page-link" href="javascript:void(0);"><i class="arrow arrow2"><\/i>上一页<\/a><\/li>',
+                next: '<li class="next page-item"><a class="page-link" href="javascript:void(0);">下一页<i class="arrow arrow3"><\/i><\/a><\/li>',
+                last: '<li class="last page-item"><a class="page-link" href="javascript:void(0);">末页<\/a><\/li>',
+                page: '<li class="page page-item"><a class="page-link" href="javascript:void(0);">{{page}}<\/a><\/li>',
+                onPageChange: function (n) {
+
+                }
+            });
+        })
+    </script>
+</main>
+</html>

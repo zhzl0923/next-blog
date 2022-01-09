@@ -24,7 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationFailureHandler failureHandler;
 
-    @Qualifier("AdminUserService")
     @Autowired
     private UserDetailsService userDetailsService;
 
