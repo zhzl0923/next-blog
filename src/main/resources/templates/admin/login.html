@@ -105,7 +105,7 @@
                 success: function (res) {
                     if (res.code === 200) {
                         toastr.success(res.message, "", {
-                            timeOut: 200,
+                            timeOut: 30,
                             onHidden: function () {
                                 window.location.href = "/admin"
                             }

@@ -24,6 +24,9 @@ spring:
     prefix: classpath:/templates/
     #thymeleaf模版后缀，默认值,可选项
     suffix: .html
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
 logging:
   config: classpath:log4j2.xml
 mybatis-plus:

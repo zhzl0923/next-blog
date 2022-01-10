@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html th:replace="~{admin/layout/layout::layout(~{::main})}" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <main class="content-wrapper">
-    <style>
-        .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            background-color: #007bff;
-            border-color: #006fe6;
-        }
-
-        .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-            color: rgba(255, 255, 255, .7);
-            margin-right: -2px;
-        }
-    </style>
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -34,6 +23,9 @@
     <section class="content">
         <div class="card">
             <div class="card-header">
+                <a th:href="@{/admin/tag/add}" class="btn btn-primary btn-sm">
+                    添加标签
+                </a>
                 <div class="card-tools">
                     <form th:action="@{/admin/tag/list}" id="searchTag" method="get">
                         <div class="input-group input-group-sm">
@@ -75,8 +67,8 @@
 
                 </div>
             </div>
+
         </div>
-        <!-- /.card -->
     </section>
     <!-- /.content -->
     <script type="text/javascript">

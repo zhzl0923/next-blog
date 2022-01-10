@@ -1,16 +1,13 @@
 package com.example.nextblog.controller.admin;
 
-import com.example.nextblog.model.dto.LoginCaptcha;
-import com.example.nextblog.model.dto.LoginParam;
-import com.example.nextblog.model.vo.Result;
-import com.example.nextblog.annotation.ParameterConvert;
 import com.example.nextblog.constant.consist.SessionConstants;
+import com.example.nextblog.model.dto.LoginCaptcha;
+import com.example.nextblog.model.vo.Result;
 import com.example.nextblog.utils.ImageCaptchaUtil;
 import com.example.nextblog.utils.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,15 +40,5 @@ public class LoginController {
         captcha.setImage("data:image/jpg;base64," + imageData);
         return ResponseUtil.success(captcha, "获取成功");
     }
-
-//    @PostMapping("/admin/login")
-//    @ResponseBody
-//    public Result<Object> login(@ParameterConvert LoginParam loginRequest, HttpServletRequest request) {
-//        if (!loginRequest.getCaptchaCode().equals(request.getSession().getAttribute(SessionConstants.CaptchaKey))) {
-//            return ResponseUtil.fail(null, "验证码错误");
-//        }
-//        request.getSession().removeAttribute(SessionConstants.CaptchaKey);
-//        return ResponseUtil.success(null,"登录成功");
-//    }
 
 }

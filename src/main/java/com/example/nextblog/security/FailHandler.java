@@ -21,11 +21,11 @@ public class FailHandler implements AuthenticationFailureHandler {
                                         HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
         response.setContentType("application/json");
-        Result<String> result;
+        Result<Object> result;
         if (exception instanceof VerificationCaptchaException) {
-            result = ResponseUtil.fail("", "验证码错误");
+            result = ResponseUtil.fail("验证码错误");
         } else {
-            result = ResponseUtil.fail("", "用户名或密码错误");
+            result = ResponseUtil.fail("用户名或密码错误");
         }
         OutputStream outputStream = response.getOutputStream();
         ObjectMapper objectMapper = new ObjectMapper();

@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/admin" class="brand-link">
+    <a th:href="@{/admin}" class="brand-link">
         <img src="/static/admin/img/site-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">Next Blog</span>
@@ -15,16 +15,18 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="/admin" class="nav-link active">
+                <li th:class="${#request.getRequestURI() == '/admin' ? 'nav-item menu-open' :  'nav-item'}">
+                    <a th:href="@{/admin}"
+                       th:class="${#request.getRequestURI() == '/admin' ? 'nav-link active' :  'nav-link'}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
+                <li th:class="${#request.getRequestURI().contains('/admin/article') ? 'nav-item menu-open' :  'nav-item'}">
+                    <a href="javascript:void(0);"
+                       th:class="${#request.getRequestURI().contains('/admin/article') ? 'nav-link active' :  'nav-link'}">
                         <i class="nav-icon fas fa-blog"></i>
                         <p>
                             文章管理
@@ -33,21 +35,26 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/article/edit" class="nav-link" style="padding-left: 30px">
+                            <a th:href="@{/admin/article/edit}"
+                               th:class="${#request.getRequestURI() == '/admin/article/edit' ? 'nav-link active' :  'nav-link'}"
+                               style="padding-left: 30px">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>文章编辑</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link" style="padding-left: 30px">
+                            <a th:href="@{/admin/article/list}"
+                               th:class="${#request.getRequestURI() == '/admin/article/list' ? 'nav-link active' :  'nav-link'}"
+                               style="padding-left: 30px">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>文章列表</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
+                <li th:class="${#request.getRequestURI().contains('/admin/tag') ? 'nav-item menu-open' :  'nav-item'}">
+                    <a href="javascript:void(0);"
+                       th:class="${#request.getRequestURI().contains('/admin/tag') ? 'nav-link active' :  'nav-link'}">
                         <i class="nav-icon fas fa-tags"></i>
                         <p>
                             标签管理
@@ -56,15 +63,18 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/admin/tag/list" class="nav-link" style="padding-left: 30px">
+                            <a th:href="@{/admin/tag/list}"
+                               th:class="${#request.getRequestURI().equals('/admin/tag/list') ? 'nav-link active' : 'nav-link'}"
+                               style="padding-left: 30px">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>标签列表</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">
+                <li th:class="${#request.getRequestURI().contains('/admin/category') ? 'nav-item menu-open' :  'nav-item'}">
+                    <a href="javascript:void(0);"
+                       th:class="${#request.getRequestURI().contains('/admin/category') ? 'nav-link active' :  'nav-link'}">
                         <i class="nav-icon fas fa-folder-open"></i>
                         <p>
                             分类管理
@@ -73,7 +83,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link" style="padding-left: 30px">
+                            <a th:href="@{/admin/category/list}"
+                               th:class="${#request.getRequestURI().equals('/admin/category/list') ? 'nav-link active' : 'nav-link'}"
+                               style="padding-left: 30px">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>分类列表</p>
                             </a>

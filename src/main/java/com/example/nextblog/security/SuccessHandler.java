@@ -29,7 +29,7 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
         session.setAttribute(SessionConstants.LOGIN_USER_ID, adminUser.getId());
         session.setAttribute(SessionConstants.LOGIN_USER_NAME, adminUser.getUsername());
         response.setContentType("application/json");
-        Result<String> result = ResponseUtil.success("", "登录成功");
+        Result<Object> result = ResponseUtil.success("登录成功");
         OutputStream outputStream = response.getOutputStream();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(outputStream, result);

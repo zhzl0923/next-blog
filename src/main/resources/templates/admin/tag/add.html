@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html th:replace="~{admin/layout/layout::layout(~{::main})}" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<main class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">标签管理</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">标签管理</li>
+                        <li class="breadcrumb-item active">添加标签</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3>添加标签</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form id="addForm">
+                    <div class="form-group">
+                        <label for="tag_name">标签名称</label>
+                        <input type="text" class="form-control" id="tag_name" name="tag_name" placeholder="标签名称">
+                    </div>
+                </form>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                <div class="modal-footer">
+                    <button type="button" id="resetBtn" class="btn btn-default" >重置</button>
+                    <button type="button" id="saveBtn" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- /.content -->
+</main>
+</html>
