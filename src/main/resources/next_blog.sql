@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 31/12/2021 17:15:57
+ Date: 11/01/2022 17:56:45
 */
 
 SET NAMES utf8mb4;
@@ -30,20 +30,21 @@ CREATE TABLE `admin_user`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '管理员信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '管理员信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_user
 -- ----------------------------
+INSERT INTO `admin_user` VALUES (1, 'admin', '$2y$10$wqmEkb2uSzqG6VRlk8WrBOTyGCvljKTDQ451EhZq5eQmHj0eYwXce', 'zlxy', '', '2022-01-06 08:00:00', '2022-01-06 08:00:00');
 
 -- ----------------------------
--- Table structure for article
+-- Table structure for blog
 -- ----------------------------
-DROP TABLE IF EXISTS `article`;
-CREATE TABLE `article`  (
-  `id` int NOT NULL,
-  `category_id` int NOT NULL COMMENT '分类id',
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章标题',
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE `blog`  (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `category_id` int UNSIGNED NOT NULL DEFAULT 0 COMMENT '分类id',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文章标题',
   `intro` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '文章简介',
   `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '文章内容',
   `views` bigint UNSIGNED NOT NULL DEFAULT 0 COMMENT '浏览量',
@@ -55,14 +56,14 @@ CREATE TABLE `article`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of article
+-- Records of blog
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for article_tag_relation
+-- Table structure for blog_tag_relation
 -- ----------------------------
-DROP TABLE IF EXISTS `article_tag_relation`;
-CREATE TABLE `article_tag_relation`  (
+DROP TABLE IF EXISTS `blog_tag_relation`;
+CREATE TABLE `blog_tag_relation`  (
   `id` int NOT NULL,
   `blog_article_id` int UNSIGNED NOT NULL DEFAULT 0,
   `blog_tag_id` int UNSIGNED NOT NULL DEFAULT 0,
@@ -70,7 +71,7 @@ CREATE TABLE `article_tag_relation`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of article_tag_relation
+-- Records of blog_tag_relation
 -- ----------------------------
 
 -- ----------------------------
@@ -78,12 +79,14 @@ CREATE TABLE `article_tag_relation`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
-  `id` int NOT NULL,
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parent_id` int UNSIGNED NOT NULL DEFAULT 0 COMMENT '父级分类id',
   `category_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '分类名称',
+  `blog_count` int UNSIGNED NOT NULL DEFAULT 0 COMMENT '博客数量',
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of category
@@ -112,15 +115,18 @@ CREATE TABLE `site_config`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag`  (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '标签名称',
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tag
 -- ----------------------------
+INSERT INTO `tag` VALUES (1, 'Java', '2022-01-09 17:39:04', '2022-01-09 17:39:08');
+INSERT INTO `tag` VALUES (2, 'JavaScript', '2022-01-09 17:39:38', '2022-01-09 17:39:43');
+INSERT INTO `tag` VALUES (4, 'PHP', '2022-01-10 17:26:55', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

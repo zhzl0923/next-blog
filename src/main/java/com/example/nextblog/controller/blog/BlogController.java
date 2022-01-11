@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class ArticleController {
+public class BlogController {
     @GetMapping("/blog/detail/{id}")
     public String detail(@PathVariable long id) {
         return "blog/detail";

@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@Controller("admin.ArticleController")
-public class ArticleController {
+@Controller("admin.BlogController")
+public class BlogController {
 
-    @GetMapping(value = {"/admin/article/edit", "/admin/article/edit/{id}"})
+    @GetMapping(value = {"/admin/blog/edit", "/admin/blog/edit/{id}"})
     public String edit(@PathVariable(name = "id", required = false) Integer articleID) {
-        return "admin/article/edit";
+        return "admin/blog/edit";
     }
 }

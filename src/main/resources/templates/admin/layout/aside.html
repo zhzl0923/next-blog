@@ -24,9 +24,9 @@
                         </p>
                     </a>
                 </li>
-                <li th:class="${#request.getRequestURI().contains('/admin/article') ? 'nav-item menu-open' :  'nav-item'}">
+                <li th:class="${#request.getRequestURI().contains('/admin/blog') ? 'nav-item menu-open' :  'nav-item'}">
                     <a href="javascript:void(0);"
-                       th:class="${#request.getRequestURI().contains('/admin/article') ? 'nav-link active' :  'nav-link'}">
+                       th:class="${#request.getRequestURI().contains('/admin/blog') ? 'nav-link active' :  'nav-link'}">
                         <i class="nav-icon fas fa-blog"></i>
                         <p>
                             文章管理
@@ -36,7 +36,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a th:href="@{/admin/article/edit}"
-                               th:class="${#request.getRequestURI() == '/admin/article/edit' ? 'nav-link active' :  'nav-link'}"
+                               th:class="${#request.getRequestURI() == '/admin/blog/edit' ? 'nav-link active' :  'nav-link'}"
                                style="padding-left: 30px">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>文章编辑</p>
@@ -44,7 +44,7 @@
                         </li>
                         <li class="nav-item">
                             <a th:href="@{/admin/article/list}"
-                               th:class="${#request.getRequestURI() == '/admin/article/list' ? 'nav-link active' :  'nav-link'}"
+                               th:class="${#request.getRequestURI() == '/admin/blog/list' ? 'nav-link active' :  'nav-link'}"
                                style="padding-left: 30px">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>文章列表</p>
