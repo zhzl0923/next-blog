@@ -59,8 +59,12 @@
                         <td th:text="${tag.getTagName()}"></td>
                         <td th:text="${#temporals.format(tag.getCreateTime(), 'yyyy-MM-dd HH:mm:ss')}"></td>
                         <td>
-                            <a th:href="${'/admin/tag/edit/'+ tag.getId()}" class="btn btn-success btn-sm">编辑</a>
-                            <a th:href="${'/admin/tag/delete/'+ tag.getId()}" class="btn btn-danger btn-sm">删除</a>
+                            <a th:href="${'/admin/tag/edit/'+ tag.getId()}" class="btn btn-xs btn-success">
+                                <i class="fas fa-edit"></i>&nbsp;&nbsp;编辑
+                            </a>
+                            <button th:data-id="${tag.getId()}" type="button" class="btn btn-xs btn-danger delTag">
+                                <i class="fas fa-trash"></i>&nbsp;&nbsp;删除
+                            </button>
                         </td>
                     </tr>
                     </tbody>
@@ -96,6 +100,33 @@
                     }
                 }
             });
+
+            $(".delTag").click(function () {
+                Swal.fire({
+                    title: '确认要删除此条记录吗?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const id = $(this).data('id');
+                        $.ajax({
+                            url: "/admin/tag/delete/",
+                            method: "POST",
+                            data: {id: id,_csrf:"[[${_csrf.getToken()}]]"},
+                            success: function (res) {
+                                Swal.fire(
+                                    res.message,
+                                    '',
+                                    'success'
+                                ).then(() => window.location.reload())
+                            }
+                        })
+
+                    }
+                })
+            })
         })
     </script>
 </main>

@@ -82,4 +82,13 @@ public class TagController {
         }
         return ResponseUtil.fail("修改失败");
     }
+
+    @PostMapping("delete")
+    @ResponseBody
+    public Result<Object> delete(@RequestParam Long id) {
+        if (tagService.removeById(id)) {
+            return ResponseUtil.success("删除成功");
+        }
+        return ResponseUtil.fail("删除失败");
+    }
 }
