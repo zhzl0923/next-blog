@@ -28,7 +28,7 @@ public class LoginController {
 
     @GetMapping("/admin/captcha")
     @ResponseBody
-    public Result<LoginCaptcha> captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public Result<LoginCaptcha> captcha(HttpServletRequest request) throws IOException {
         ImageCaptchaUtil captchaUtils = new ImageCaptchaUtil();
         BufferedImage image = captchaUtils.getImage();  //获取验证码
         ByteArrayOutputStream stream = new ByteArrayOutputStream();

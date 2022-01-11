@@ -11,6 +11,7 @@ import com.example.nextblog.utils.ResponseUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,7 +73,7 @@ public class TagController {
 
     @PostMapping("update")
     @ResponseBody
-    public Result<Object> update(@ParameterConvert UpdateTag updateTagParam) {
+    public Result<Object> update(@Validated @ParameterConvert UpdateTag updateTagParam) {
         Tag tag = new Tag();
         BeanUtils.copyProperties(updateTagParam, tag);
         boolean res = tagService.updateById(tag);
