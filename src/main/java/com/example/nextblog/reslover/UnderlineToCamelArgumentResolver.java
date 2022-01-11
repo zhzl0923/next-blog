@@ -46,7 +46,10 @@ public class UnderlineToCamelArgumentResolver extends AbstractCustomizeResolver 
         while (paramNames.hasNext()) {
             String paramName = paramNames.next();
             Object o = webRequest.getParameter(paramName);
-            wrapper.setPropertyValue(underLineToCamel(paramName), o);
+            String propertyName = underLineToCamel(paramName);
+            if (wrapper.isWritableProperty(propertyName)) {
+                wrapper.setPropertyValue(underLineToCamel(paramName), o);
+            }
         }
         return obj;
     }

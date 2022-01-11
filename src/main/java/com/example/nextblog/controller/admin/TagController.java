@@ -2,16 +2,16 @@ package com.example.nextblog.controller.admin;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.nextblog.annotation.ParameterConvert;
+import com.example.nextblog.model.dto.UpdateTag;
 import com.example.nextblog.model.entity.Tag;
 import com.example.nextblog.model.vo.Result;
 import com.example.nextblog.service.TagService;
 import com.example.nextblog.utils.ResponseUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller("admin.TagController")
@@ -47,6 +47,7 @@ public class TagController {
     }
 
     @PostMapping("create")
+    @ResponseBody
     public Result<Object> create(@RequestParam(name = "tag_name") String tagName) {
         if (tagName.equals("")) {
             return ResponseUtil.fail("请输入标签名称");
@@ -60,4 +61,24 @@ public class TagController {
         }
     }
 
+    @GetMapping("edit/{id}")
+    public ModelAndView edit(@PathVariable Integer id) {
+        Tag tag = tagService.getById(id);
+        ModelAndView modelAndView = new ModelAndView("admin/tag/edit");
+        modelAndView.addObject("tagName", tag.getTagName());
+        modelAndView.addObject("id", tag.getId());
+        return modelAndView;
+    }
+
+    @PostMapping("update")
+    @ResponseBody
+    public Result<Object> update(@ParameterConvert UpdateTag updateTagParam) {
+        Tag tag = new Tag();
+        BeanUtils.copyProperties(updateTagParam, tag);
+        boolean res = tagService.updateById(tag);
+        if (res) {
+            return ResponseUtil.success("修改成功");
+        }
+        return ResponseUtil.fail("修改失败");
+    }
 }

@@ -6,10 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.example.nextblog.mapper")
-public class NextBlogApplication  {
+public class NextBlogApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NextBlogApplication.class, args);
     }
-
 }

@@ -29,6 +29,7 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="/static/admin/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/static/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" th:href="@{/static/admin/plugins/toastr/toastr.min.css}">
     <!-- jQuery -->
     <script src="/static/admin/plugins/jquery/jquery.min.js"></script>
     <style>
@@ -70,6 +71,8 @@
 <script src="/static/admin/js/adminlte.js"></script>
 <script src="/static/admin/js/jq-paginator.min.js"></script>
 <script src="/static/admin/js/jquery.pjax.js"></script>
+<!-- Toastr -->
+<script th:src="@{/static/admin/plugins/toastr/toastr.min.js}"></script>
 <script>
     $(function () {
         //Initialize Select2 Elements

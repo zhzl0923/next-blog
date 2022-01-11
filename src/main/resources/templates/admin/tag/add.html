@@ -31,13 +31,14 @@
                     <div class="form-group">
                         <label for="tag_name">标签名称</label>
                         <input type="text" class="form-control" id="tag_name" name="tag_name" placeholder="标签名称">
+                        <input type="hidden" name="_csrf" th:value="${_csrf.getToken()}">
                     </div>
                 </form>
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
                 <div class="modal-footer">
-                    <button type="button" id="resetBtn" class="btn btn-default" >重置</button>
+                    <button type="button" id="resetBtn" class="btn btn-default">重置</button>
                     <button type="button" id="saveBtn" class="btn btn-primary">提交</button>
                 </div>
             </div>
@@ -45,5 +46,39 @@
         </div>
     </section>
     <!-- /.content -->
+    <script type="text/javascript">
+        $(function () {
+            $("#resetBtn").click(function () {
+                $("input[name='tag_name']").val('');
+            })
+            $("#saveBtn").click(function () {
+                var tagName = $("input[name='tag_name']").val();
+                var _csrf = $("input[name='_csrf']").val();
+                $.ajax({
+                    url: "/admin/tag/create",
+                    method: 'post',
+                    data: {tag_name: tagName, _csrf: _csrf},
+                    success: function (res) {
+                        if (res.code === 200) {
+                            toastr.success(res.message, "", {
+                                timeOut: 30,
+                                onHidden: function () {
+                                    window.location.href = "/admin/tag/list"
+                                }
+                            })
+                        } else {
+                            toastr.error(res.message, "", {
+                                timeOut: 30,
+                                onHidden: function () {
+                                    window.location.reload()
+                                }
+                            })
+                        }
+                    }
+                })
+            })
+        })
+
+    </script>
 </main>
 </html>

@@ -50,13 +50,18 @@
                         <th>ID</th>
                         <th>标签名称</th>
                         <th>创建时间</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="tag : ${list}" class="text-center">
                         <td th:text="${tag.getId()}"></td>
                         <td th:text="${tag.getTagName()}"></td>
-                        <td th:text="${#dates.format(tag.getCreateTime(), 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${#temporals.format(tag.getCreateTime(), 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td>
+                            <a th:href="${'/admin/tag/edit/'+ tag.getId()}" class="btn btn-success btn-sm">编辑</a>
+                            <a th:href="${'/admin/tag/delete/'+ tag.getId()}" class="btn btn-danger btn-sm">删除</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

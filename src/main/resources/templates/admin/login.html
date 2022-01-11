@@ -119,6 +119,14 @@
                         })
                     }
                 },
+                fail: function (res) {
+                    toastr.error("请求失败", "", {
+                        timeOut: 30,
+                        onHidden: function () {
+                            window.location.reload()
+                        }
+                    })
+                },
                 error: function (res) {
                     toastr.error(res.message, "", {
                         timeOut: 30,
